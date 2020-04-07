@@ -88,14 +88,12 @@ class Clash extends StatelessWidget{
 
   Clash(this.tag,this.image);
 
-  aI(){
-    if(gameLogic.aIPicked == 1){
-      return 'images/rock.png';
-    }else if(gameLogic.aIPicked == 2){
-      return 'images/paper.png';
-    }
+  aiPicked(){
+    if(gameLogic.aIPicked == 1)return 'images/rock.png';
+    if(gameLogic.aIPicked == 2)return 'images/paper.png';
     return 'images/scissors.png';
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +105,7 @@ class Clash extends StatelessWidget{
         child:ListView(
           padding: const EdgeInsets.only(top:30),
           children: <Widget>[
-              Image.asset(aI(),width: 150,height: 150,),
+              Image.asset(aiPicked(),width: 150,height: 150,),
               
               Divider(),
               

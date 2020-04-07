@@ -54,7 +54,6 @@ abstract class _GameLogic with Store{
       }
         print("AI - $aI");
         print("HUMAN - $human");
-        print("-");
         print("RESULT - $result");
     }
     
