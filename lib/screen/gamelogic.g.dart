@@ -14,6 +14,18 @@ mixin _$GameLogic on _GameLogic, Store {
   @override
   int get aIPicked =>
       (_$aIPickedComputed ??= Computed<int>(() => super.aIPicked)).value;
+  Computed<int> _$aIUpdatedScoreComputed;
+
+  @override
+  int get aIUpdatedScore =>
+      (_$aIUpdatedScoreComputed ??= Computed<int>(() => super.aIUpdatedScore))
+          .value;
+  Computed<int> _$humanUpdatedScoreComputed;
+
+  @override
+  int get humanUpdatedScore => (_$humanUpdatedScoreComputed ??=
+          Computed<int>(() => super.humanUpdatedScore))
+      .value;
 
   final _$aIAtom = Atom(name: '_GameLogic.aI');
 
@@ -47,6 +59,40 @@ mixin _$GameLogic on _GameLogic, Store {
       super.human = value;
       _$humanAtom.reportChanged();
     }, _$humanAtom, name: '${_$humanAtom.name}_set');
+  }
+
+  final _$aiScoreAtom = Atom(name: '_GameLogic.aiScore');
+
+  @override
+  int get aiScore {
+    _$aiScoreAtom.context.enforceReadPolicy(_$aiScoreAtom);
+    _$aiScoreAtom.reportObserved();
+    return super.aiScore;
+  }
+
+  @override
+  set aiScore(int value) {
+    _$aiScoreAtom.context.conditionallyRunInAction(() {
+      super.aiScore = value;
+      _$aiScoreAtom.reportChanged();
+    }, _$aiScoreAtom, name: '${_$aiScoreAtom.name}_set');
+  }
+
+  final _$humanScoreAtom = Atom(name: '_GameLogic.humanScore');
+
+  @override
+  int get humanScore {
+    _$humanScoreAtom.context.enforceReadPolicy(_$humanScoreAtom);
+    _$humanScoreAtom.reportObserved();
+    return super.humanScore;
+  }
+
+  @override
+  set humanScore(int value) {
+    _$humanScoreAtom.context.conditionallyRunInAction(() {
+      super.humanScore = value;
+      _$humanScoreAtom.reportChanged();
+    }, _$humanScoreAtom, name: '${_$humanScoreAtom.name}_set');
   }
 
   final _$resultAtom = Atom(name: '_GameLogic.result');
@@ -91,7 +137,7 @@ mixin _$GameLogic on _GameLogic, Store {
   @override
   String toString() {
     final string =
-        'aI: ${aI.toString()},human: ${human.toString()},result: ${result.toString()},aIPicked: ${aIPicked.toString()}';
+        'aI: ${aI.toString()},human: ${human.toString()},aiScore: ${aiScore.toString()},humanScore: ${humanScore.toString()},result: ${result.toString()},aIPicked: ${aIPicked.toString()},aIUpdatedScore: ${aIUpdatedScore.toString()},humanUpdatedScore: ${humanUpdatedScore.toString()}';
     return '{$string}';
   }
 }
