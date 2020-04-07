@@ -6,17 +6,17 @@ void main() => runApp(MyApp());
 
 final gameLogic = GameLogic();
 
-final index = [1,2,3];
+int human = 0;
+int ai = 0;
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lime,
       ),
       home: GameApp(),
     );
@@ -24,16 +24,21 @@ class MyApp extends StatelessWidget {
 }
 
 class GameApp extends StatelessWidget{
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar:AppBar(
-      //   title:Text("Game")
-      // ),
-      body:Center(
-        child: Container(
-          child:Row(
+      appBar:AppBar(
+           title:Text("ROCK - PAPER - SCISSORS")
+      ),
+      body:Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+          
+            Row(
             children: <Widget>[
+
                 Expanded(
                   child:GestureDetector(
                       onTap: (){
@@ -63,6 +68,7 @@ class GameApp extends StatelessWidget{
                   child:GestureDetector(
                      onTap: () {
                         gameLogic.setHumanValue(3);
+                        
                         Navigator.push(context, MaterialPageRoute(builder: (_)=>Clash("3",'images/scissors.png')));
                      }, 
                     child:Hero(
@@ -71,12 +77,24 @@ class GameApp extends StatelessWidget{
                     )
                   )
                 ),
-          
+                
             ],
-          )
+          ),
+            Row(children: <Widget>[
+              Expanded(
+              child:RaisedButton(
+                onPressed: ()=>gameLogic.resetScore,child: Text("Reset"),
+                color: Colors.red,
+              )
+            ),
+            ],
+            ),
+          Divider()
+          ],
+          
         )
       
-      )
+      
     );
   }
 
@@ -97,14 +115,21 @@ class Clash extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:AppBar(
+        title:Text("AI - ${gameLogic.aIUpdatedScore} | HUMAN - ${gameLogic.humanUpdatedScore}")
+      ),
       body:Center(
+        
         child:GestureDetector(
         onTap:(){
             Navigator.pop(context);
         },
-        child:ListView(
-          padding: const EdgeInsets.only(top:30),
+      
+          child: ListView(
+          padding: const EdgeInsets.all(50),
           children: <Widget>[
+           
+              Text(""),
               Image.asset(aiPicked(),width: 150,height: 150,),
               
               Divider(),
@@ -121,7 +146,8 @@ class Clash extends StatelessWidget{
             ],
           
           
-        )
+        ),
+        
       )
       )
     );

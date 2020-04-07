@@ -135,6 +135,16 @@ mixin _$GameLogic on _GameLogic, Store {
   }
 
   @override
+  bool resetScore() {
+    final _$actionInfo = _$_GameLogicActionController.startAction();
+    try {
+      return super.resetScore();
+    } finally {
+      _$_GameLogicActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     final string =
         'aI: ${aI.toString()},human: ${human.toString()},aiScore: ${aiScore.toString()},humanScore: ${humanScore.toString()},result: ${result.toString()},aIPicked: ${aIPicked.toString()},aIUpdatedScore: ${aIUpdatedScore.toString()},humanUpdatedScore: ${humanUpdatedScore.toString()}';

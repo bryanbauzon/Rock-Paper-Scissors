@@ -16,10 +16,10 @@ abstract class _GameLogic with Store{
     int human;
 
     @observable
-    int aiScore;
+    int aiScore = 0;
 
     @observable
-    int humanScore;
+    int humanScore = 0;
 
     @observable
     String result = "";
@@ -45,12 +45,12 @@ abstract class _GameLogic with Store{
       
       if((human == 1) && (aI == 2) || (human == 3) && (aI == 1) || (human == 2) && (aI == 3)){
          result = lose;
-         aiScore++;
+         aiScore += 1;
       }
 
       if((human == 2) && (aI == 1) || (human == 1) && (aI == 3) || (human == 3) && (aI == 2)){
         result = win;
-        humanScore++;
+        humanScore += 1;
       }
         print("AI - $aI");
         print("HUMAN - $human");
@@ -63,6 +63,13 @@ abstract class _GameLogic with Store{
         human = humanValue;
         aI = Random().nextInt(3) + 1;
         gameResult();
+    }
+
+    @action
+    bool resetScore(){
+      humanScore = 0;
+      aiScore = 0;
+      return true;
     }
 
 }
