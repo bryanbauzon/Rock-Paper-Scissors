@@ -65,11 +65,4 @@ abstract class _GameLogic with Store{
         gameResult();
     }
 
-    @action
-    bool resetScore(){
-      humanScore = 0;
-      aiScore = 0;
-      return true;
-    }
-
 }
