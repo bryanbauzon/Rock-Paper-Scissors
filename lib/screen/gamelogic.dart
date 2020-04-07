@@ -23,9 +23,9 @@ abstract class _GameLogic with Store{
 
     @action
     void gameResult(){
-      final String win = "WIN";
-      final String lose = "LOSE";
-      final String draw = "DRAW";
+      final String win = "YOU WIN!";
+      final String lose = "YOU LOSE!";
+      final String draw = "DRAW!";
       
       if((human == 1) && (aI == 1) ||  (human == 2) && (aI == 2) || (human == 3) && (aI == 3)){
         result = draw;
