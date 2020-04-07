@@ -1,6 +1,6 @@
-# prs
+# Rock - Paper - Scissor
 
-A new Flutter project.
+A simple game 
 
 ## Getting Started
 
